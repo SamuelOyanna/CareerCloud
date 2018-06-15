@@ -11,70 +11,145 @@ using System.Threading.Tasks;
 
 namespace CareerCloud.ADODataAccessLayer
 {
-    public class ApplicantEducationRepository : IDataRepository<ApplicantEducationPoco>
-    {
-        public void Add(params ApplicantEducationPoco[] items)
-        {
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
-            SqlCommand command = new SqlCommand();
-            command.Connection = connection;
-            int rowsAffected = 0;
 
+
+public class ApplicantEducationRepository : BaseADO, IDataRepository<ApplicantEducationPoco>
+{
+    public void Add(params ApplicantEducationPoco[] items)
+    {
+        using (SqlConnection _connection = new SqlConnection(connectionString))
+        {
+            SqlCommand cmd = new SqlCommand()
+            {
+                Connection = _connection
+            };
+            int rowsEffected = 0;
             foreach (ApplicantEducationPoco poco in items)
             {
-                command.CommandText = @"INSERT INTO Applicant_Educations 
-                    (Id, Applicant, Major, Certificate_Diploma, Start_Date, Completion_Date
-                    Completion_Percent)
-                    Values
-                    (@Id, @Applicant, @Major, @Certificate_Diploma, @Start_Date, @Completion_Date,
-                    @Completion_Percent)";
+                cmd.CommandText = @"INSERT INTO Applicant_Educations (Id, Applicant, Major, Certificate_Diploma, Start_Date, Completion_Date, Completion_Percent) 
+                                    VALUES (@Id,@Applicant, @Major, @CertificateDiploma, @StartDate, @CompletionDate, @CompletionPercent)";
+                cmd.Parameters.AddWithValue("@Id", poco.Id);
+                cmd.Parameters.AddWithValue("@Applicant", poco.Applicant);
+                cmd.Parameters.AddWithValue("@Major", poco.Major);
+                cmd.Parameters.AddWithValue("@CertificateDiploma", poco.CertificateDiploma);
+                cmd.Parameters.AddWithValue("@StartDate", poco.StartDate);
+                cmd.Parameters.AddWithValue("@CompletionDate", poco.CompletionDate);
+                cmd.Parameters.AddWithValue("@CompletionPercent", poco.CompletionPercent);
 
-                command.Parameters.AddWithValue("@Id", poco.Id);
-                command.Parameters.AddWithValue("@Applicant", poco.Applicant);
-                command.Parameters.AddWithValue("@Major", poco.Major);
-                command.Parameters.AddWithValue("@Certificate_Diploma", poco.CertificateDiploma);
-                command.Parameters.AddWithValue("@Start_Date", poco.StartDate);
-                command.Parameters.AddWithValue("@Completion_Date", poco.CompletionDate);
-                command.Parameters.AddWithValue("@Completion_Percent", poco.CompletionPercent);
-              
-
-
-                connection.Open();
-                rowsAffected += command.ExecuteNonQuery();
-                connection.Close();
-
+                _connection.Open();
+                rowsEffected = cmd.ExecuteNonQuery();
+                _connection.Close();
             }
-
-        }
-
-        public void CallStoredProc(string name, params Tuple<string, string>[] parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IList<ApplicantEducationPoco> GetAll(params Expression<Func<ApplicantEducationPoco, object>>[] navigationProperties)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IList<ApplicantEducationPoco> GetList(Expression<Func<ApplicantEducationPoco, bool>> where, params Expression<Func<ApplicantEducationPoco, object>>[] navigationProperties)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ApplicantEducationPoco GetSingle(Expression<Func<ApplicantEducationPoco, bool>> where, params Expression<Func<ApplicantEducationPoco, object>>[] navigationProperties)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove(params ApplicantEducationPoco[] items)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(params ApplicantEducationPoco[] items)
-        {
-            throw new NotImplementedException();
         }
     }
+
+    public void CallStoredProc(string name, params Tuple<string, string>[] parameters)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IList<ApplicantEducationPoco> GetAll(params Expression<Func<ApplicantEducationPoco, object>>[] navigationProperties)
+    {
+        ApplicantEducationPoco[] pocos = new ApplicantEducationPoco[1000];
+        using (SqlConnection _connection = new SqlConnection(connectionString))
+        {
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = _connection,
+                CommandText = "SELECT * FROM Applicant_Educations"
+            };
+
+            _connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            int position = 0;
+            while (reader.Read())
+            {
+                ApplicantEducationPoco poco = new ApplicantEducationPoco
+                {
+                    Id = reader.GetGuid(0),
+                    Applicant = reader.GetGuid(1),
+                    Major = reader.GetString(2),
+                    CertificateDiploma = reader.GetString(3),
+                    StartDate = (DateTime?)(reader.IsDBNull(4) ? null : reader[4]),
+                    CompletionDate = (DateTime?)(reader.IsDBNull(5) ? null : reader[5]),
+                    CompletionPercent = (byte?)(reader.IsDBNull(6) ? null : reader[6]),
+                    TimeStamp = (byte[])reader[7]
+                };
+
+                pocos[position] = poco;
+                position++;
+            }
+            _connection.Close();
+            return pocos.Where(p => p != null).ToList();
+        }
+    }
+
+    public IList<ApplicantEducationPoco> GetList(Expression<Func<ApplicantEducationPoco, bool>> where, params Expression<Func<ApplicantEducationPoco, object>>[] navigationProperties)
+    {
+        throw new NotImplementedException();
+    }
+
+    public ApplicantEducationPoco GetSingle(Expression<Func<ApplicantEducationPoco, bool>> where, params Expression<Func<ApplicantEducationPoco, object>>[] navigationProperties)
+    {
+        IQueryable<ApplicantEducationPoco> pocos = GetAll().AsQueryable();
+        return pocos.Where(where).FirstOrDefault();
+
+    }
+
+    public void Remove(params ApplicantEducationPoco[] items)
+    {
+        using (SqlConnection _connection = new SqlConnection(connectionString))
+        {
+            SqlCommand cmd = new SqlCommand()
+            {
+                Connection = _connection
+            };
+            int rowsEffected = 0;
+            foreach (ApplicantEducationPoco poco in items)
+            {
+                cmd.CommandText = @"DELETE FROM Applicant_Educations WHERE Id = @Id";
+                cmd.Parameters.AddWithValue("@Id", poco.Id);
+
+                _connection.Open();
+                rowsEffected = cmd.ExecuteNonQuery();
+                _connection.Close();
+            }
+        }
+    }
+
+    public void Update(params ApplicantEducationPoco[] items)
+    {
+        using (SqlConnection _connection = new SqlConnection(connectionString))
+        {
+            SqlCommand cmd = new SqlCommand()
+            {
+                Connection = _connection
+            };
+            int rowsEffected = 0;
+            foreach (ApplicantEducationPoco poco in items)
+            {
+                cmd.CommandText = @"UPDATE Applicant_Educations 
+                                    SET Applicant = @Applicant, 
+	                                    Major = @Major, 
+	                                    Certificate_Diploma = @CertificateDiploma, 
+	                                    Start_Date = @StartDate, 
+	                                    Completion_Date = @CompletionDate, 
+	                                    Completion_Percent = @CompletionPercent 
+                                    WHERE Id = @Id";
+                cmd.Parameters.AddWithValue("@Id", poco.Id);
+                cmd.Parameters.AddWithValue("@Applicant", poco.Applicant);
+                cmd.Parameters.AddWithValue("@Major", poco.Major);
+                cmd.Parameters.AddWithValue("@CertificateDiploma", poco.CertificateDiploma);
+                cmd.Parameters.AddWithValue("@StartDate", poco.StartDate);
+                cmd.Parameters.AddWithValue("@CompletionDate", poco.CompletionDate);
+                cmd.Parameters.AddWithValue("@CompletionPercent", poco.CompletionPercent);
+
+                _connection.Open();
+                rowsEffected = cmd.ExecuteNonQuery();
+                _connection.Close();
+            }
+        }
+    }
+}
 }

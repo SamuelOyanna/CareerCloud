@@ -2,7 +2,6 @@
 using CareerCloud.Pocos;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
@@ -11,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace CareerCloud.ADODataAccessLayer
 {
-    public class ApplicantJobApplicationRepository : BaseADO, IDataRepository<ApplicantJobApplicationPoco>
+    public class CompanyDescriptionRepository : BaseADO, IDataRepository<CompanyDescriptionPoco>
     {
-        public void Add(params ApplicantJobApplicationPoco[] items)
+        public void Add(params CompanyDescriptionPoco[] items)
         {
             using (SqlConnection _connection = new SqlConnection(connectionString))
             {
@@ -22,17 +21,15 @@ namespace CareerCloud.ADODataAccessLayer
                     Connection = _connection
                 };
                 int rowsEffected = 0;
-                foreach (ApplicantJobApplicationPoco poco in items)
+                foreach (CompanyDescriptionPoco poco in items)
                 {
-                    cmd.CommandText = @"INSERT INTO Applicant_Job_Applications (Id, Applicant, Job, Application_Date) 
-                                    VALUES (@Id,@Applicant, @Job, @ApplicationDate)";
+                    cmd.CommandText = @"INSERT INTO Company_Descriptions (Id, Company, LanguageID, Company_Name, Company_Description) 
+                                    VALUES (@Id,@Company, @LanguageID, @CompanyName, @CompanyDescription)";
                     cmd.Parameters.AddWithValue("@Id", poco.Id);
-                    cmd.Parameters.AddWithValue("@Applicant", poco.Applicant);
-                    cmd.Parameters.AddWithValue("@Job", poco.Job);
-                    cmd.Parameters.AddWithValue("@ApplicationDate", poco.ApplicationDate);
-                    
-
-
+                    cmd.Parameters.AddWithValue("@Company", poco.Company);
+                    cmd.Parameters.AddWithValue("@LanguageID", poco.LanguageId);
+                    cmd.Parameters.AddWithValue("@CompanyName", poco.CompanyName);
+                    cmd.Parameters.AddWithValue("@CompanyDescription", poco.CompanyDescription);
 
                     _connection.Open();
                     rowsEffected = cmd.ExecuteNonQuery();
@@ -46,15 +43,15 @@ namespace CareerCloud.ADODataAccessLayer
             throw new NotImplementedException();
         }
 
-        public IList<ApplicantJobApplicationPoco> GetAll(params Expression<Func<ApplicantJobApplicationPoco, object>>[] navigationProperties)
+        public IList<CompanyDescriptionPoco> GetAll(params Expression<Func<CompanyDescriptionPoco, object>>[] navigationProperties)
         {
-            ApplicantJobApplicationPoco[] pocos = new ApplicantJobApplicationPoco[1000];
+            CompanyDescriptionPoco[] pocos = new CompanyDescriptionPoco[1000];
             using (SqlConnection _connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand
                 {
                     Connection = _connection,
-                    CommandText = "SELECT * FROM Applicant_Job_Applications"
+                    CommandText = "SELECT * FROM Company_Descriptions"
                 };
 
                 _connection.Open();
@@ -63,13 +60,14 @@ namespace CareerCloud.ADODataAccessLayer
                 int position = 0;
                 while (reader.Read())
                 {
-                    ApplicantJobApplicationPoco poco = new ApplicantJobApplicationPoco
+                    CompanyDescriptionPoco poco = new CompanyDescriptionPoco
                     {
                         Id = reader.GetGuid(0),
-                        Applicant = reader.GetGuid(1),
-                        Job = reader.GetGuid(2),
-                        ApplicationDate = reader.GetDateTime(3),
-                        TimeStamp = (byte[])reader[4]
+                        Company = reader.GetGuid(1),
+                        LanguageId = reader.GetString(2),
+                        CompanyName = reader.GetString(3),
+                        CompanyDescription = reader.GetString(4),
+                        TimeStamp = (byte[])reader[5]
                     };
 
                     pocos[position] = poco;
@@ -80,18 +78,19 @@ namespace CareerCloud.ADODataAccessLayer
             }
         }
 
-        public IList<ApplicantJobApplicationPoco> GetList(Expression<Func<ApplicantJobApplicationPoco, bool>> where, params Expression<Func<ApplicantJobApplicationPoco, object>>[] navigationProperties)
+        public IList<CompanyDescriptionPoco> GetList(Expression<Func<CompanyDescriptionPoco, bool>> where, params Expression<Func<CompanyDescriptionPoco, object>>[] navigationProperties)
         {
             throw new NotImplementedException();
         }
 
-        public ApplicantJobApplicationPoco GetSingle(Expression<Func<ApplicantJobApplicationPoco, bool>> where, params Expression<Func<ApplicantJobApplicationPoco, object>>[] navigationProperties)
+        public CompanyDescriptionPoco GetSingle(Expression<Func<CompanyDescriptionPoco, bool>> where, params Expression<Func<CompanyDescriptionPoco, object>>[] navigationProperties)
         {
-            IQueryable<ApplicantJobApplicationPoco> pocos = GetAll().AsQueryable();
+            IQueryable<CompanyDescriptionPoco> pocos = GetAll().AsQueryable();
             return pocos.Where(where).FirstOrDefault();
+
         }
 
-        public void Remove(params ApplicantJobApplicationPoco[] items)
+        public void Remove(params CompanyDescriptionPoco[] items)
         {
             using (SqlConnection _connection = new SqlConnection(connectionString))
             {
@@ -100,9 +99,9 @@ namespace CareerCloud.ADODataAccessLayer
                     Connection = _connection
                 };
                 int rowsEffected = 0;
-                foreach (ApplicantJobApplicationPoco poco in items)
+                foreach (CompanyDescriptionPoco poco in items)
                 {
-                    cmd.CommandText = @"DELETE FROM Applicant_Job_Applications WHERE Id = @Id";
+                    cmd.CommandText = @"DELETE FROM Company_Descriptions WHERE Id = @Id";
                     cmd.Parameters.AddWithValue("@Id", poco.Id);
 
                     _connection.Open();
@@ -112,7 +111,7 @@ namespace CareerCloud.ADODataAccessLayer
             }
         }
 
-        public void Update(params ApplicantJobApplicationPoco[] items)
+        public void Update(params CompanyDescriptionPoco[] items)
         {
             using (SqlConnection _connection = new SqlConnection(connectionString))
             {
@@ -121,19 +120,20 @@ namespace CareerCloud.ADODataAccessLayer
                     Connection = _connection
                 };
                 int rowsEffected = 0;
-                foreach (ApplicantJobApplicationPoco poco in items)
+                foreach (CompanyDescriptionPoco poco in items)
                 {
-                    cmd.CommandText = @"UPDATE Applicant_Job_Applications 
-                                    SET Applicant = @Applicant, 
-	                                    Job = @Job, 
-	                                    Application_Date = @ApplicationDate
+                    cmd.CommandText = @"UPDATE Company_Descriptions 
+                                    SET Company = @Company, 
+	                                    LanguageID = @LanguageID, 
+	                                    Company_Name = @CompanyName, 
+	                                    Company_Description = @CompanyDescription
                                     WHERE Id = @Id";
                     cmd.Parameters.AddWithValue("@Id", poco.Id);
-                    cmd.Parameters.AddWithValue("@Applicant", poco.Applicant);
-                    cmd.Parameters.AddWithValue("@Job", poco.Job);
-                    cmd.Parameters.AddWithValue("@ApplicationDate", poco.ApplicationDate);
+                    cmd.Parameters.AddWithValue("@LanguageID", poco.LanguageId);
+                    cmd.Parameters.AddWithValue("@Company", poco.Company);
+                    cmd.Parameters.AddWithValue("@CompanyName", poco.CompanyName);
+                    cmd.Parameters.AddWithValue("@CompanyDescription", poco.CompanyDescription);
                     
-                   
 
                     _connection.Open();
                     rowsEffected = cmd.ExecuteNonQuery();
@@ -142,9 +142,4 @@ namespace CareerCloud.ADODataAccessLayer
             }
         }
     }
-    }
-
-
-
-
-
+}

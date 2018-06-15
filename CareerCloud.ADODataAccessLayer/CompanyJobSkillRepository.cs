@@ -2,7 +2,6 @@
 using CareerCloud.Pocos;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
@@ -11,9 +10,10 @@ using System.Threading.Tasks;
 
 namespace CareerCloud.ADODataAccessLayer
 {
-    public class ApplicantJobApplicationRepository : BaseADO, IDataRepository<ApplicantJobApplicationPoco>
+    public class CompanyJobSkillRepository : BaseADO, IDataRepository<CompanyJobSkillPoco>
     {
-        public void Add(params ApplicantJobApplicationPoco[] items)
+
+        public void Add(params CompanyJobSkillPoco[] items)
         {
             using (SqlConnection _connection = new SqlConnection(connectionString))
             {
@@ -22,17 +22,16 @@ namespace CareerCloud.ADODataAccessLayer
                     Connection = _connection
                 };
                 int rowsEffected = 0;
-                foreach (ApplicantJobApplicationPoco poco in items)
+                foreach (CompanyJobSkillPoco poco in items)
                 {
-                    cmd.CommandText = @"INSERT INTO Applicant_Job_Applications (Id, Applicant, Job, Application_Date) 
-                                    VALUES (@Id,@Applicant, @Job, @ApplicationDate)";
+                    cmd.CommandText = @"INSERT INTO Company_Job_Skills (Id, Job, Skill, Skill_Level, Importance) 
+                                    VALUES (@Id,@Job, @Skill, @SkillLevel, @Importance)";
                     cmd.Parameters.AddWithValue("@Id", poco.Id);
-                    cmd.Parameters.AddWithValue("@Applicant", poco.Applicant);
                     cmd.Parameters.AddWithValue("@Job", poco.Job);
-                    cmd.Parameters.AddWithValue("@ApplicationDate", poco.ApplicationDate);
-                    
-
-
+                    cmd.Parameters.AddWithValue("@Skill", poco.Skill);
+                    cmd.Parameters.AddWithValue("@SkillLevel", poco.SkillLevel);
+                    cmd.Parameters.AddWithValue("@Importance", poco.Importance);
+                  
 
                     _connection.Open();
                     rowsEffected = cmd.ExecuteNonQuery();
@@ -46,15 +45,15 @@ namespace CareerCloud.ADODataAccessLayer
             throw new NotImplementedException();
         }
 
-        public IList<ApplicantJobApplicationPoco> GetAll(params Expression<Func<ApplicantJobApplicationPoco, object>>[] navigationProperties)
+        public IList<CompanyJobSkillPoco> GetAll(params Expression<Func<CompanyJobSkillPoco, object>>[] navigationProperties)
         {
-            ApplicantJobApplicationPoco[] pocos = new ApplicantJobApplicationPoco[1000];
+            CompanyJobSkillPoco[] pocos = new CompanyJobSkillPoco[15000];
             using (SqlConnection _connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand
                 {
                     Connection = _connection,
-                    CommandText = "SELECT * FROM Applicant_Job_Applications"
+                    CommandText = "SELECT * FROM Company_Job_Skills"
                 };
 
                 _connection.Open();
@@ -63,13 +62,14 @@ namespace CareerCloud.ADODataAccessLayer
                 int position = 0;
                 while (reader.Read())
                 {
-                    ApplicantJobApplicationPoco poco = new ApplicantJobApplicationPoco
+                    CompanyJobSkillPoco poco = new CompanyJobSkillPoco
                     {
                         Id = reader.GetGuid(0),
-                        Applicant = reader.GetGuid(1),
-                        Job = reader.GetGuid(2),
-                        ApplicationDate = reader.GetDateTime(3),
-                        TimeStamp = (byte[])reader[4]
+                        Job = reader.GetGuid(1),
+                        Skill = reader.GetString(2),
+                        SkillLevel = reader.GetString(3),
+                        Importance = reader.GetInt32(4),
+                        TimeStamp = (byte[])reader[5]
                     };
 
                     pocos[position] = poco;
@@ -80,18 +80,19 @@ namespace CareerCloud.ADODataAccessLayer
             }
         }
 
-        public IList<ApplicantJobApplicationPoco> GetList(Expression<Func<ApplicantJobApplicationPoco, bool>> where, params Expression<Func<ApplicantJobApplicationPoco, object>>[] navigationProperties)
+        public IList<CompanyJobSkillPoco> GetList(Expression<Func<CompanyJobSkillPoco, bool>> where, params Expression<Func<CompanyJobSkillPoco, object>>[] navigationProperties)
         {
             throw new NotImplementedException();
         }
 
-        public ApplicantJobApplicationPoco GetSingle(Expression<Func<ApplicantJobApplicationPoco, bool>> where, params Expression<Func<ApplicantJobApplicationPoco, object>>[] navigationProperties)
+        public CompanyJobSkillPoco GetSingle(Expression<Func<CompanyJobSkillPoco, bool>> where, params Expression<Func<CompanyJobSkillPoco, object>>[] navigationProperties)
         {
-            IQueryable<ApplicantJobApplicationPoco> pocos = GetAll().AsQueryable();
+            IQueryable<CompanyJobSkillPoco> pocos = GetAll().AsQueryable();
             return pocos.Where(where).FirstOrDefault();
+
         }
 
-        public void Remove(params ApplicantJobApplicationPoco[] items)
+        public void Remove(params CompanyJobSkillPoco[] items)
         {
             using (SqlConnection _connection = new SqlConnection(connectionString))
             {
@@ -100,9 +101,9 @@ namespace CareerCloud.ADODataAccessLayer
                     Connection = _connection
                 };
                 int rowsEffected = 0;
-                foreach (ApplicantJobApplicationPoco poco in items)
+                foreach (CompanyJobSkillPoco poco in items)
                 {
-                    cmd.CommandText = @"DELETE FROM Applicant_Job_Applications WHERE Id = @Id";
+                    cmd.CommandText = @"DELETE FROM Company_Job_Skills WHERE Id = @Id";
                     cmd.Parameters.AddWithValue("@Id", poco.Id);
 
                     _connection.Open();
@@ -112,7 +113,7 @@ namespace CareerCloud.ADODataAccessLayer
             }
         }
 
-        public void Update(params ApplicantJobApplicationPoco[] items)
+        public void Update(params CompanyJobSkillPoco[] items)
         {
             using (SqlConnection _connection = new SqlConnection(connectionString))
             {
@@ -121,18 +122,19 @@ namespace CareerCloud.ADODataAccessLayer
                     Connection = _connection
                 };
                 int rowsEffected = 0;
-                foreach (ApplicantJobApplicationPoco poco in items)
+                foreach (CompanyJobSkillPoco poco in items)
                 {
-                    cmd.CommandText = @"UPDATE Applicant_Job_Applications 
-                                    SET Applicant = @Applicant, 
-	                                    Job = @Job, 
-	                                    Application_Date = @ApplicationDate
+                    cmd.CommandText = @"UPDATE Company_Job_Skills 
+                                    SET Job = @Job, 
+	                                    Skill = @Skill, 
+	                                    Skill_Level = @SkillLevel, 
+	                                    Importance = @Importance 
                                     WHERE Id = @Id";
                     cmd.Parameters.AddWithValue("@Id", poco.Id);
-                    cmd.Parameters.AddWithValue("@Applicant", poco.Applicant);
                     cmd.Parameters.AddWithValue("@Job", poco.Job);
-                    cmd.Parameters.AddWithValue("@ApplicationDate", poco.ApplicationDate);
-                    
+                    cmd.Parameters.AddWithValue("@Skill", poco.Skill);
+                    cmd.Parameters.AddWithValue("@SkillLevel", poco.SkillLevel);
+                    cmd.Parameters.AddWithValue("@Importance", poco.Importance);
                    
 
                     _connection.Open();
@@ -142,9 +144,4 @@ namespace CareerCloud.ADODataAccessLayer
             }
         }
     }
-    }
-
-
-
-
-
+}

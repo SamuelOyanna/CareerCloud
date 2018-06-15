@@ -16,4 +16,4 @@ namespace CareerCloud.DataAccessLayer
         void CallStoredProc(string name, params Tuple<string, string>[] parameters);
     }
 }
-}
+

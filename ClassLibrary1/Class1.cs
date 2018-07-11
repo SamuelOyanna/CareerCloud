@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CareerCloud.Pocos
+namespace ClassLibrary1
 {
-    public interface IPoco
+    public class Class1
     {
-         Guid Id { get; set; }
     }
 }

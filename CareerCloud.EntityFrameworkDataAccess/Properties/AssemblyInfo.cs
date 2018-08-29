@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CareerCloud.BusinessLogicLayer’")]
+[assembly: AssemblyTitle("CareerCloud.EntityFrameworkDataAccess")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CareerCloud.BusinessLogicLayer’")]
+[assembly: AssemblyProduct("CareerCloud.EntityFrameworkDataAccess")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("541d8d0d-71f7-43cf-8b3c-91c18608cd29")]
+[assembly: Guid("9b841939-69f6-4ad5-843b-03a04bef676b")]
 
 // Version information for an assembly consists of the following four values:
 //

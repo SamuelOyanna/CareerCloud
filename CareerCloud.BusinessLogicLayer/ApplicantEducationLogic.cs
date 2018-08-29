@@ -10,7 +10,7 @@ namespace CareerCloud.BusinessLogicLayer
 {
     public class ApplicantEducationLogic :BaseLogic<ApplicantEducationPoco>
     {
-        public ApplicantEducationLogic(IDataRepository<ApplicantEducationPoco> repo)
+         public ApplicantEducationLogic(IDataRepository<ApplicantEducationPoco> repo)
             : base(repo) 
 
         {

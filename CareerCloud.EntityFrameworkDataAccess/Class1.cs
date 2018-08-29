@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CareerCloud.BusinessLogicLayer_
+namespace CareerCloud.EntityFrameworkDataAccess
 {
     public class Class1
     {

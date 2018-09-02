@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareerCloud.BusinessLogicLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareerCloud.EntityFrameworkDataAccess", "CareerCloud.EntityFrameworkDataAccess\CareerCloud.EntityFrameworkDataAccess.csproj", "{9B841939-69F6-4AD5-843B-03A04BEF676B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareerCloud.WCF", "CareerCloud.WCF\CareerCloud.WCF.csproj", "{43D94265-3674-4606-A9D1-62187C1EEA39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareerCloud.UnitTests.Assignment5", "CareerCloud.UnitTests.Assignment5-master\CareerCloud.UnitTests.Assignment5\CareerCloud.UnitTests.Assignment5.csproj", "{943928D9-1890-4404-A8AF-5FF14079C136}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{9B841939-69F6-4AD5-843B-03A04BEF676B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B841939-69F6-4AD5-843B-03A04BEF676B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B841939-69F6-4AD5-843B-03A04BEF676B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43D94265-3674-4606-A9D1-62187C1EEA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D94265-3674-4606-A9D1-62187C1EEA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D94265-3674-4606-A9D1-62187C1EEA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D94265-3674-4606-A9D1-62187C1EEA39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{943928D9-1890-4404-A8AF-5FF14079C136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{943928D9-1890-4404-A8AF-5FF14079C136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{943928D9-1890-4404-A8AF-5FF14079C136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{943928D9-1890-4404-A8AF-5FF14079C136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,9 +13,9 @@ namespace CareerCloud.EntityFrameworkDataAccess
 
     {
         private CareerCloudContext context = null;
-        public EFGenericRepository()
+        public EFGenericRepository(bool createProxy = true)
         {
-            context = new CareerCloudContext();
+            context = new CareerCloudContext(createProxy);
         }
         public void Add(params T[] items)
         {

@@ -13,245 +13,245 @@ namespace CareerCloud.WCF
     {
         public void AddCompanyDescription(CompanyDescriptionPoco[] pocos)
         {
-            EFGenericRepository<CompanyDescriptionPoco> repo = new EFGenericRepository<CompanyDescriptionPoco>(false);
+            ApplicantProfileRepository<CompanyDescriptionPoco> repo = new ApplicantProfileRepository<CompanyDescriptionPoco>(false);
             CompanyDescriptionLogic log = new CompanyDescriptionLogic(repo);
             log.Add(pocos);
         }
 
         public void AddCompanyJob(CompanyJobPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobPoco> repo = new EFGenericRepository<CompanyJobPoco>(false);
+            ApplicantProfileRepository<CompanyJobPoco> repo = new ApplicantProfileRepository<CompanyJobPoco>(false);
             CompanyJobLogic log = new CompanyJobLogic(repo);
             log.Add(pocos);
         }
 
         public void AddCompanyJobDescription(CompanyJobDescriptionPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobDescriptionPoco> repo = new EFGenericRepository<CompanyJobDescriptionPoco>(false);
+            ApplicantProfileRepository<CompanyJobDescriptionPoco> repo = new ApplicantProfileRepository<CompanyJobDescriptionPoco>(false);
             CompanyJobDescriptionLogic log = new CompanyJobDescriptionLogic(repo);
             log.Add(pocos);
         }
 
         public void AddCompanyJobEducation(CompanyJobEducationPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobEducationPoco> repo = new EFGenericRepository<CompanyJobEducationPoco>(false);
+            ApplicantProfileRepository<CompanyJobEducationPoco> repo = new ApplicantProfileRepository<CompanyJobEducationPoco>(false);
             CompanyJobEducationLogic log = new CompanyJobEducationLogic(repo);
             log.Add(pocos);
         }
 
         public void AddCompanyJobSkill(CompanyJobSkillPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobSkillPoco> repo = new EFGenericRepository<CompanyJobSkillPoco>(false);
+            ApplicantProfileRepository<CompanyJobSkillPoco> repo = new ApplicantProfileRepository<CompanyJobSkillPoco>(false);
             CompanyJobSkillLogic log = new CompanyJobSkillLogic(repo);
             log.Add(pocos);
         }
 
         public void AddCompanyLocation(CompanyLocationPoco[] pocos)
         {
-            EFGenericRepository<CompanyLocationPoco> repo = new EFGenericRepository<CompanyLocationPoco>(false);
+            ApplicantProfileRepository<CompanyLocationPoco> repo = new ApplicantProfileRepository<CompanyLocationPoco>(false);
             CompanyLocationLogic log = new CompanyLocationLogic(repo);
             log.Add(pocos);
         }
 
         public void AddCompanyProfile(CompanyProfilePoco[] pocos)
         {
-            EFGenericRepository<CompanyProfilePoco> repo = new EFGenericRepository<CompanyProfilePoco>(false);
+            ApplicantProfileRepository<CompanyProfilePoco> repo = new ApplicantProfileRepository<CompanyProfilePoco>(false);
             CompanyProfileLogic log = new CompanyProfileLogic(repo);
             log.Add(pocos);
         }
 
         public List<CompanyDescriptionPoco> GetAllCompanyDescription()
         {
-            EFGenericRepository<CompanyDescriptionPoco> repo = new EFGenericRepository<CompanyDescriptionPoco>(false);
+            ApplicantProfileRepository<CompanyDescriptionPoco> repo = new ApplicantProfileRepository<CompanyDescriptionPoco>(false);
             CompanyDescriptionLogic log = new CompanyDescriptionLogic(repo);
             return log.GetAll();
         }
 
         public List<CompanyJobPoco> GetAllCompanyJob()
         {
-            EFGenericRepository<CompanyJobPoco> repo = new EFGenericRepository<CompanyJobPoco>(false);
+            ApplicantProfileRepository<CompanyJobPoco> repo = new ApplicantProfileRepository<CompanyJobPoco>(false);
             CompanyJobLogic log = new CompanyJobLogic(repo);
             return log.GetAll();
         }
 
         public List<CompanyJobDescriptionPoco> GetAllCompanyJobDescription()
         {
-            EFGenericRepository<CompanyJobDescriptionPoco> repo = new EFGenericRepository<CompanyJobDescriptionPoco>(false);
+            ApplicantProfileRepository<CompanyJobDescriptionPoco> repo = new ApplicantProfileRepository<CompanyJobDescriptionPoco>(false);
             CompanyJobDescriptionLogic log = new CompanyJobDescriptionLogic(repo);
             return log.GetAll();
         }
 
         public List<CompanyJobEducationPoco> GetAllCompanyJobEducation()
         {
-            EFGenericRepository<CompanyJobEducationPoco> repo = new EFGenericRepository<CompanyJobEducationPoco>(false);
+            ApplicantProfileRepository<CompanyJobEducationPoco> repo = new ApplicantProfileRepository<CompanyJobEducationPoco>(false);
             CompanyJobEducationLogic log = new CompanyJobEducationLogic(repo);
             return log.GetAll();
         }
 
         public List<CompanyJobSkillPoco> GetAllCompanyJobSkill()
         {
-            EFGenericRepository<CompanyJobSkillPoco> repo = new EFGenericRepository<CompanyJobSkillPoco>(false);
+            ApplicantProfileRepository<CompanyJobSkillPoco> repo = new ApplicantProfileRepository<CompanyJobSkillPoco>(false);
             CompanyJobSkillLogic log = new CompanyJobSkillLogic(repo);
             return log.GetAll();
         }
 
         public List<CompanyLocationPoco> GetAllCompanyLocation()
         {
-            EFGenericRepository<CompanyLocationPoco> repo = new EFGenericRepository<CompanyLocationPoco>(false);
+            ApplicantProfileRepository<CompanyLocationPoco> repo = new ApplicantProfileRepository<CompanyLocationPoco>(false);
             CompanyLocationLogic log = new CompanyLocationLogic(repo);
             return log.GetAll();
         }
 
         public List<CompanyProfilePoco> GetAllCompanyProfile()
         {
-            EFGenericRepository<CompanyProfilePoco> repo = new EFGenericRepository<CompanyProfilePoco>(false);
+            ApplicantProfileRepository<CompanyProfilePoco> repo = new ApplicantProfileRepository<CompanyProfilePoco>(false);
             CompanyProfileLogic log = new CompanyProfileLogic(repo);
             return log.GetAll();
         }
 
         public CompanyDescriptionPoco GetSingleCompanyDescription(string Id)
         {
-            EFGenericRepository<CompanyDescriptionPoco> repo = new EFGenericRepository<CompanyDescriptionPoco>(false);
+            ApplicantProfileRepository<CompanyDescriptionPoco> repo = new ApplicantProfileRepository<CompanyDescriptionPoco>(false);
             CompanyDescriptionLogic log = new CompanyDescriptionLogic(repo);
             return log.Get(Guid.Parse(Id));
         }
 
         public CompanyJobPoco GetSingleCompanyJob(string Id)
         {
-            EFGenericRepository<CompanyJobPoco> repo = new EFGenericRepository<CompanyJobPoco>(false);
+            ApplicantProfileRepository<CompanyJobPoco> repo = new ApplicantProfileRepository<CompanyJobPoco>(false);
             CompanyJobLogic log = new CompanyJobLogic(repo);
             return log.Get(Guid.Parse(Id));
         }
 
         public CompanyJobDescriptionPoco GetSingleCompanyJobDescription(string Id)
         {
-            EFGenericRepository<CompanyJobDescriptionPoco> repo = new EFGenericRepository<CompanyJobDescriptionPoco>(false);
+            ApplicantProfileRepository<CompanyJobDescriptionPoco> repo = new ApplicantProfileRepository<CompanyJobDescriptionPoco>(false);
             CompanyJobDescriptionLogic log = new CompanyJobDescriptionLogic(repo);
             return log.Get(Guid.Parse(Id));
         }
 
         public CompanyJobEducationPoco GetSingleCompanyJobEducation(string Id)
         {
-            EFGenericRepository<CompanyJobEducationPoco> repo = new EFGenericRepository<CompanyJobEducationPoco>(false);
+            ApplicantProfileRepository<CompanyJobEducationPoco> repo = new ApplicantProfileRepository<CompanyJobEducationPoco>(false);
             CompanyJobEducationLogic log = new CompanyJobEducationLogic(repo);
             return log.Get(Guid.Parse(Id));
         }
 
         public CompanyJobSkillPoco GetSingleCompanyJobSkill(string Id)
         {
-            EFGenericRepository<CompanyJobSkillPoco> repo = new EFGenericRepository<CompanyJobSkillPoco>(false);
+            ApplicantProfileRepository<CompanyJobSkillPoco> repo = new ApplicantProfileRepository<CompanyJobSkillPoco>(false);
             CompanyJobSkillLogic log = new CompanyJobSkillLogic(repo);
             return log.Get(Guid.Parse(Id));
         }
 
         public CompanyLocationPoco GetSingleCompanyLocation(string Id)
         {
-            EFGenericRepository<CompanyLocationPoco> repo = new EFGenericRepository<CompanyLocationPoco>(false);
+            ApplicantProfileRepository<CompanyLocationPoco> repo = new ApplicantProfileRepository<CompanyLocationPoco>(false);
             CompanyLocationLogic log = new CompanyLocationLogic(repo);
             return log.Get(Guid.Parse(Id));
         }
 
         public CompanyProfilePoco GetSingleCompanyProfile(string Id)
         {
-            EFGenericRepository<CompanyProfilePoco> repo = new EFGenericRepository<CompanyProfilePoco>(false);
+            ApplicantProfileRepository<CompanyProfilePoco> repo = new ApplicantProfileRepository<CompanyProfilePoco>(false);
             CompanyProfileLogic log = new CompanyProfileLogic(repo);
             return log.Get(Guid.Parse(Id));
         }
 
         public void RemoveCompanyDescription(CompanyDescriptionPoco[] pocos)
         {
-            EFGenericRepository<CompanyDescriptionPoco> repo = new EFGenericRepository<CompanyDescriptionPoco>(false);
+            ApplicantProfileRepository<CompanyDescriptionPoco> repo = new ApplicantProfileRepository<CompanyDescriptionPoco>(false);
             CompanyDescriptionLogic log = new CompanyDescriptionLogic(repo);
             log.Delete(pocos);
         }
 
         public void RemoveCompanyJob(CompanyJobPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobPoco> repo = new EFGenericRepository<CompanyJobPoco>(false);
+            ApplicantProfileRepository<CompanyJobPoco> repo = new ApplicantProfileRepository<CompanyJobPoco>(false);
             CompanyJobLogic log = new CompanyJobLogic(repo);
             log.Delete(pocos);
         }
 
         public void RemoveCompanyJobDescription(CompanyJobDescriptionPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobDescriptionPoco> repo = new EFGenericRepository<CompanyJobDescriptionPoco>(false);
+            ApplicantProfileRepository<CompanyJobDescriptionPoco> repo = new ApplicantProfileRepository<CompanyJobDescriptionPoco>(false);
             CompanyJobDescriptionLogic log = new CompanyJobDescriptionLogic(repo);
             log.Delete(pocos);
         }
 
         public void RemoveCompanyJobEducation(CompanyJobEducationPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobEducationPoco> repo = new EFGenericRepository<CompanyJobEducationPoco>(false);
+            ApplicantProfileRepository<CompanyJobEducationPoco> repo = new ApplicantProfileRepository<CompanyJobEducationPoco>(false);
             CompanyJobEducationLogic log = new CompanyJobEducationLogic(repo);
             log.Delete(pocos);
         }
 
         public void RemoveCompanyJobSkill(CompanyJobSkillPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobSkillPoco> repo = new EFGenericRepository<CompanyJobSkillPoco>(false);
+            ApplicantProfileRepository<CompanyJobSkillPoco> repo = new ApplicantProfileRepository<CompanyJobSkillPoco>(false);
             CompanyJobSkillLogic log = new CompanyJobSkillLogic(repo);
             log.Delete(pocos);
         }
 
         public void RemoveCompanyLocation(CompanyLocationPoco[] pocos)
         {
-            EFGenericRepository<CompanyLocationPoco> repo = new EFGenericRepository<CompanyLocationPoco>(false);
+            ApplicantProfileRepository<CompanyLocationPoco> repo = new ApplicantProfileRepository<CompanyLocationPoco>(false);
             CompanyLocationLogic log = new CompanyLocationLogic(repo);
             log.Delete(pocos);
         }
 
         public void RemoveCompanyProfile(CompanyProfilePoco[] pocos)
         {
-            EFGenericRepository<CompanyProfilePoco> repo = new EFGenericRepository<CompanyProfilePoco>(false);
+            ApplicantProfileRepository<CompanyProfilePoco> repo = new ApplicantProfileRepository<CompanyProfilePoco>(false);
             CompanyProfileLogic log = new CompanyProfileLogic(repo);
             log.Delete(pocos);
         }
 
         public void UpdateCompanyDescription(CompanyDescriptionPoco[] pocos)
         {
-            EFGenericRepository<CompanyDescriptionPoco> repo = new EFGenericRepository<CompanyDescriptionPoco>(false);
+            ApplicantProfileRepository<CompanyDescriptionPoco> repo = new ApplicantProfileRepository<CompanyDescriptionPoco>(false);
             CompanyDescriptionLogic log = new CompanyDescriptionLogic(repo);
             log.Update(pocos);
         }
 
         public void UpdateCompanyJob(CompanyJobPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobPoco> repo = new EFGenericRepository<CompanyJobPoco>(false);
+            ApplicantProfileRepository<CompanyJobPoco> repo = new ApplicantProfileRepository<CompanyJobPoco>(false);
             CompanyJobLogic log = new CompanyJobLogic(repo);
             log.Update(pocos);
         }
 
         public void UpdateCompanyJobDescription(CompanyJobDescriptionPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobDescriptionPoco> repo = new EFGenericRepository<CompanyJobDescriptionPoco>(false);
+            ApplicantProfileRepository<CompanyJobDescriptionPoco> repo = new ApplicantProfileRepository<CompanyJobDescriptionPoco>(false);
             CompanyJobDescriptionLogic log = new CompanyJobDescriptionLogic(repo);
             log.Update(pocos);
         }
 
         public void UpdateCompanyJobEducation(CompanyJobEducationPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobEducationPoco> repo = new EFGenericRepository<CompanyJobEducationPoco>(false);
+            ApplicantProfileRepository<CompanyJobEducationPoco> repo = new ApplicantProfileRepository<CompanyJobEducationPoco>(false);
             CompanyJobEducationLogic log = new CompanyJobEducationLogic(repo);
             log.Update(pocos);
         }
 
         public void UpdateCompanyJobSkill(CompanyJobSkillPoco[] pocos)
         {
-            EFGenericRepository<CompanyJobSkillPoco> repo = new EFGenericRepository<CompanyJobSkillPoco>(false);
+            ApplicantProfileRepository<CompanyJobSkillPoco> repo = new ApplicantProfileRepository<CompanyJobSkillPoco>(false);
             CompanyJobSkillLogic log = new CompanyJobSkillLogic(repo);
             log.Update(pocos);
         }
 
         public void UpdateCompanyLocation(CompanyLocationPoco[] pocos)
         {
-            EFGenericRepository<CompanyLocationPoco> repo = new EFGenericRepository<CompanyLocationPoco>(false);
+            ApplicantProfileRepository<CompanyLocationPoco> repo = new ApplicantProfileRepository<CompanyLocationPoco>(false);
             CompanyLocationLogic log = new CompanyLocationLogic(repo);
             log.Update(pocos);
         }
 
         public void UpdateCompanyProfile(CompanyProfilePoco[] pocos)
         {
-            EFGenericRepository<CompanyProfilePoco> repo = new EFGenericRepository<CompanyProfilePoco>(false);
+            ApplicantProfileRepository<CompanyProfilePoco> repo = new ApplicantProfileRepository<CompanyProfilePoco>(false);
             CompanyProfileLogic log = new CompanyProfileLogic(repo);
             log.Update(pocos);
         }

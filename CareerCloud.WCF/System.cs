@@ -15,21 +15,21 @@ namespace CareerCloud.WCF
     {
         public void AddSystemCountryCode(SystemCountryCodePoco[] pocos)
         {
-            EFGenericRepository<SystemCountryCodePoco> repo = new EFGenericRepository<SystemCountryCodePoco>(false);
+            ApplicantProfileRepository<SystemCountryCodePoco> repo = new ApplicantProfileRepository<SystemCountryCodePoco>(false);
             SystemCountryCodeLogic log = new SystemCountryCodeLogic(repo);
             log.Add(pocos);
         }
 
         public void AddSystemLanguageCode(SystemLanguageCodePoco[] pocos)
         {
-            EFGenericRepository<SystemLanguageCodePoco> repo = new EFGenericRepository<SystemLanguageCodePoco>(false);
+            ApplicantProfileRepository<SystemLanguageCodePoco> repo = new ApplicantProfileRepository<SystemLanguageCodePoco>(false);
             SystemLanguageCodeLogic log = new SystemLanguageCodeLogic(repo);
             log.Add(pocos);
         }
 
         public List<SystemCountryCodePoco> GetAllSystemCountryCode()
         {
-            EFGenericRepository<SystemCountryCodePoco> repo = new EFGenericRepository<SystemCountryCodePoco>(false);
+            ApplicantProfileRepository<SystemCountryCodePoco> repo = new ApplicantProfileRepository<SystemCountryCodePoco>(false);
             SystemCountryCodeRepository l = new SystemCountryCodeRepository();
             SystemCountryCodeLogic log = new SystemCountryCodeLogic(l);
             return log.GetAll();
@@ -37,21 +37,21 @@ namespace CareerCloud.WCF
 
         public List<SystemLanguageCodePoco> GetAllSystemLanguageCode()
         {
-            EFGenericRepository<SystemLanguageCodePoco> repo = new EFGenericRepository<SystemLanguageCodePoco>(false);
+            ApplicantProfileRepository<SystemLanguageCodePoco> repo = new ApplicantProfileRepository<SystemLanguageCodePoco>(false);
             SystemLanguageCodeLogic log = new SystemLanguageCodeLogic(repo);
             return log.GetAll();
         }
 
         public SystemCountryCodePoco GetSingleSystemCountryCode(string Id)
         {
-            EFGenericRepository<SystemCountryCodePoco> repo = new EFGenericRepository<SystemCountryCodePoco>(false);
+            ApplicantProfileRepository<SystemCountryCodePoco> repo = new ApplicantProfileRepository<SystemCountryCodePoco>(false);
             SystemCountryCodeLogic log = new SystemCountryCodeLogic(repo);
             return log.Get(Id);
         }
 
         public SystemLanguageCodePoco GetSingleSystemLanguageCode(string Id)
         {
-            EFGenericRepository<SystemLanguageCodePoco> repo = new EFGenericRepository<SystemLanguageCodePoco>(false);
+            ApplicantProfileRepository<SystemLanguageCodePoco> repo = new ApplicantProfileRepository<SystemLanguageCodePoco>(false);
             SystemLanguageCodeLogic log = new SystemLanguageCodeLogic(repo);
             return log.Get(Id);
         }
@@ -59,7 +59,7 @@ namespace CareerCloud.WCF
         public void RemoveSystemCountryCode(SystemCountryCodePoco[] pocos)
         {
 
-            EFGenericRepository<SystemCountryCodePoco> repo = new EFGenericRepository<SystemCountryCodePoco>(false);
+            ApplicantProfileRepository<SystemCountryCodePoco> repo = new ApplicantProfileRepository<SystemCountryCodePoco>(false);
             SystemCountryCodeLogic log = new SystemCountryCodeLogic(repo);
             log.Delete(pocos);
         
@@ -67,21 +67,21 @@ namespace CareerCloud.WCF
 
         public void RemoveSystemLanguageCode(SystemLanguageCodePoco[] pocos)
         {
-            EFGenericRepository<SystemLanguageCodePoco> repo = new EFGenericRepository<SystemLanguageCodePoco>(false);
+            ApplicantProfileRepository<SystemLanguageCodePoco> repo = new ApplicantProfileRepository<SystemLanguageCodePoco>(false);
             SystemLanguageCodeLogic log = new SystemLanguageCodeLogic(repo);
             log.Delete(pocos);
         }
 
         public void UpdateSystemCountryCode(SystemCountryCodePoco[] pocos)
         {
-            EFGenericRepository<SystemCountryCodePoco> repo = new EFGenericRepository<SystemCountryCodePoco>(false);
+            ApplicantProfileRepository<SystemCountryCodePoco> repo = new ApplicantProfileRepository<SystemCountryCodePoco>(false);
             SystemCountryCodeLogic log = new SystemCountryCodeLogic(repo);
             log.Update(pocos);
         }
 
         public void UpdateSystemLanguageCode(SystemLanguageCodePoco[] pocos)
         {
-            EFGenericRepository<SystemLanguageCodePoco> repo = new EFGenericRepository<SystemLanguageCodePoco>(false);
+            ApplicantProfileRepository<SystemLanguageCodePoco> repo = new ApplicantProfileRepository<SystemLanguageCodePoco>(false);
             SystemLanguageCodeLogic log = new SystemLanguageCodeLogic(repo);
             log.Update(pocos);
         }

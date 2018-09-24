@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CareerCloud.EntityFrameworkDataAccess
 {
-    public class EFGenericRepository<T> : IDataRepository<T> where T : class
+    public class ApplicantProfileRepository<T> : IDataRepository<T> where T : class
 
     {
-        private CareerCloudContext context = null;
-        public EFGenericRepository(bool createProxy = true)
+        private CareerCloudContext context;
+        public ApplicantProfileRepository(bool createProxy = true)
         {
             context = new CareerCloudContext(createProxy);
         }

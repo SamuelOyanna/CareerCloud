@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CareerCloudMVC.Models.JobInformation>
+
+@{
+    ViewBag.Title = "Current Jobs";
+}
+
+<h2>Current Jobs</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.companyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.profileCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.companyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.profileCreated)
+        </td>
+        <td>
+          |
+            @Html.ActionLink("Details", "Details", new { companyName = item.companyName, jobName = item.jobName, jobDescription = item.jobDescription, profileCreated = item.profileCreated  }) |
+            @Html.ActionLink("Apply", "Apply", new { companyJobPoco = item.companyJobPoco.Id /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

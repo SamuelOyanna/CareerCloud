@@ -110,6 +110,13 @@ namespace CareerCloud.ADODataAccessLayer
 
         }
 
+        public SecurityLoginPoco GetSinglePocoByLoginAndPassword(string login, string password)
+        {
+            IQueryable<SecurityLoginPoco> pocos = GetAll().AsQueryable();
+            return pocos.Where(s => s.Login == login && s.Password == password).FirstOrDefault();
+
+        }
+
         public void Remove(params SecurityLoginPoco[] items)
         {
             using (SqlConnection _connection = new SqlConnection(connectionString))

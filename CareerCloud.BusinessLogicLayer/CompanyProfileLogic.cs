@@ -61,8 +61,8 @@ namespace CareerCloud.BusinessLogicLayer
                     Match match = regex.Match(poco.ContactPhone);
                     if (!match.Success)
                     {
-                        exceptions.Add(new ValidationException(601,
-                            $"Must correspond to a valid phone number (e.g. 416-555-1234) - {poco.Id}"));
+                       // exceptions.Add(new ValidationException(601,
+                          //  $"Must correspond to a valid phone number (e.g. 416-555-1234) - {poco.Id}"));
 
                     }
 

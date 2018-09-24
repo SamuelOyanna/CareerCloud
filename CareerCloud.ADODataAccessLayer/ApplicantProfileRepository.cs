@@ -76,7 +76,9 @@ namespace CareerCloud.ADODataAccessLayer
                 {
                     ApplicantProfilePoco poco = new ApplicantProfilePoco
                     {
-                        Id = reader.GetGuid(0),
+                       
+
+                         Id = reader.GetGuid(0),
                         Login = reader.GetGuid(1),
                         CurrentSalary = (Decimal?)(reader.IsDBNull(2) ? null : reader[2]),
                         CurrentRate = (Decimal?)(reader.IsDBNull(3) ? null : reader[3]),
@@ -86,7 +88,7 @@ namespace CareerCloud.ADODataAccessLayer
                         Street = reader.GetString(7),
                         City = reader.GetString(8),
                         PostalCode = reader.GetString(9),
-                        TimeStamp = (byte[])reader[10]
+                        TimeStamp = (byte[])(reader.IsDBNull(10) ? null : reader[10])
                     };
 
                     pocos[position] = poco;
